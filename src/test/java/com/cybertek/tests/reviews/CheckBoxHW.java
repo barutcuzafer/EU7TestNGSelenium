@@ -7,6 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
+import java.util.ArrayList;
+
 public class CheckBoxHW {
 
     public WebDriver driver;
@@ -68,4 +70,34 @@ public class CheckBoxHW {
 
 
     }
+
+    @Test
+    public void deletePersonTest(){
+
+        //*[contains(text(),'Steve Johns')]/preceding-sibling::*/input
+        //*[contains(text(),'Steve Johns')]/..//td[1]/input
+        //td[2][contains(text(),'Charles Dodgeson')]
+        String name="Steve Johns";
+        String locatorCheckBoxOfPerson="//*[contains(text(),'"+name+"')]/preceding-sibling::*/input";
+
+            WebElement CheckBoxOfPerson= driver.findElement(By.xpath(locatorCheckBoxOfPerson));
+            CheckBoxOfPerson.click();
+
+            WebElement deleteButton=driver.findElement(By.id("ctl00_MainContent_btnDelete"));
+            deleteButton.click();
+
+        ArrayList<String> names=new ArrayList<>();
+        for(int i=0;i<7;i++){
+            String eachNameLocator="(//input[@type='checkbox'])["+i+"]/../../td[2]";
+            WebElement eachNameElement=driver.findElement(By.xpath(eachNameLocator));
+            String eachName=eachNameElement.getText();
+            names.add(eachName);
+        }
+        System.out.println("names = " + names);
+        Assert.assertFalse(names.contains(name),"The name is STILL there but it must not be");
+
+
+    }
+
+
 }
