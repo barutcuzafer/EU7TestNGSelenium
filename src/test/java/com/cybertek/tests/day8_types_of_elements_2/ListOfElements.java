@@ -36,7 +36,8 @@ WebDriver driver;
         System.out.println("buttons.size() = " + buttons.size());
         Assert.assertEquals(buttons.size(),6);
         for (WebElement button : buttons) {
-            System.out.println("button.getText() = " + button.getText());
+            System.out.println(button.isDisplayed());
+            Assert.assertTrue(button.isDisplayed(),"verify buttons are displayed");
         }
 
     }
