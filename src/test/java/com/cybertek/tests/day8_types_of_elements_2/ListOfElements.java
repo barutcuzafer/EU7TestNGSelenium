@@ -39,10 +39,20 @@ WebDriver driver;
             System.out.println(button.isDisplayed());
             Assert.assertTrue(button.isDisplayed(),"verify buttons are displayed");
         }
+        buttons.get(1).click();
 
     }
     @Test
     public void test2(){
+        driver.get("http://practice.cybertekschool.com/multiple_buttons");
+        List<WebElement> buttons = driver.findElements(By.tagName("buttonth"));
+        System.out.println("buttons.size() = " + buttons.size());
+
+
+    }
+    @Test
+    public void test3(){
+        driver.get("http://practice.cybertekschool.com/dropdown");
 
     }
 }
